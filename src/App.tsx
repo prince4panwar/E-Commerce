@@ -6,9 +6,12 @@ import { Route, Routes } from "react-router";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
 import ProductDetails from "./Pages/ProductDetails";
+import SignIn from "./Pages/SignIn";
+import Register from "./Pages/Register";
 
 function App() {
   const [theme] = useThemeHook();
+
   return (
     <main
       className={theme ? "bg-black" : "bg-light-2"}
@@ -17,6 +20,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/product-details/:productId"
           element={<ProductDetails />}
