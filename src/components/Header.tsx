@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { ThemeContext } from "../GlobalComponents/ThemeProvider";
 import { BiSun, BiMoon, BiCart } from "react-icons/bi";
+import { VscAccount } from "react-icons/vsc";
 import { Link } from "react-router";
 import { useCart } from "react-use-cart";
 
@@ -26,7 +27,7 @@ function Header() {
       style={{ width: "100%", position: "fixed", zIndex: 100 }}
     >
       <Container>
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Navbar.Brand
             className={darkMode ? "text-dark-primary" : "text-light-primary"}
           >
@@ -35,7 +36,7 @@ function Header() {
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto" style={{ gap: "1rem" }}>
             <Link
               to="sign-in"
               className={`nav-link ${
@@ -65,6 +66,15 @@ function Header() {
                 </span>
               )}
               <span style={{ marginLeft: !isEmpty ? "-13px" : 0 }}>Cart</span>
+            </Link>
+            <Link
+              to="my-account"
+              className={`nav-link ${
+                darkMode ? "text-dark-primary" : "text-light-primary"
+              }`}
+            >
+              <VscAccount size="1.5rem" />
+              &nbsp; My Account
             </Link>
           </Nav>
         </Navbar.Collapse>

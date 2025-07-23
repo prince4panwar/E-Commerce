@@ -1,17 +1,25 @@
 import { Button, Card } from "react-bootstrap";
 import { useThemeHook } from "../GlobalComponents/ThemeProvider";
-import { useCart } from "react-use-cart";
+import { useCart, type Item } from "react-use-cart";
 import { BsCartPlus } from "react-icons/bs";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
+import type { ReactElement } from "react";
 
-function ProductCard(props) {
+interface ProductCardProps {
+  data: Item;
+}
+
+function ProductCard(props: ProductCardProps): ReactElement {
   let { image, price, title, id } = props.data;
   const [theme] = useThemeHook();
   const { addItem } = useCart();
 
   const addToCart = () => {
     addItem(props.data);
+    toast.success("Item is added to cart", { autoClose: 2000 });
   };
+
   return (
     <Card
       style={{ width: "18rem", height: "auto" }}

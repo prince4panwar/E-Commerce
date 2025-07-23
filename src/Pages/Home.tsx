@@ -24,7 +24,7 @@ function Home() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <Col xs={10} md={7} xl={4} className="mb-3 mx-auto text-center">
+        <Col xs={10} md={7} xl={4} className="my-3 mx-auto text-center">
           <h1 className={theme ? "text-light my-5" : "text-black my-5"}>
             Search products
           </h1>

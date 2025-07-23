@@ -1,0 +1,28 @@
+.user-menu .nav-item .nav-link{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-menu .nav-pills .nav-link {
+    margin-bottom: .5rem;
+}
+
+.user-menu.bg-dark .nav-pills .nav-link:not(.active) {
+    border: 1px solid #fcbc73;
+    color: #fcbc73;
+}
+
+.user-menu.bg-light .nav-pills .nav-link:not(.active) {
+    border: 1px solid #191654;
+    color: #191654;
+}
+
+.user-menu.bg-dark .nav-pills .nav-link.active {
+    background-color: #fcbc73;
+    color: black;
+}
+
+.user-menu.bg-light .nav-pills .nav-link.active {
+    background-color: #191654;
+    color: white;
+}
