@@ -1,21 +1,28 @@
 import { useContext, useEffect, useState } from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { ThemeContext } from "../GlobalComponents/ThemeProvider";
 import { BiSun, BiMoon, BiCart } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
 
 function Header() {
   const { theme, setThemeMode } = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme);
+  const isAuthenticated = !!sessionStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setThemeMode(darkMode);
-    console.log(darkMode);
   }, [darkMode]);
 
   const { isEmpty, totalItems } = useCart();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/sign-in", { replace: true });
+  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -31,26 +38,40 @@ function Header() {
           <Navbar.Brand
             className={darkMode ? "text-dark-primary" : "text-light-primary"}
           >
-            E-Commerece
+            E-Commerce
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto" style={{ gap: "1rem" }}>
-            <Link
-              to="sign-in"
-              className={`nav-link ${
-                darkMode ? "text-dark-primary" : "text-light-primary"
-              }`}
-            >
-              Sign in
-            </Link>
+            {isAuthenticated ? (
+              <span
+                onClick={handleLogout}
+                className={`nav-link cursor-pointer ${
+                  darkMode ? "text-dark-primary" : "text-light-primary"
+                }`}
+                style={{ cursor: "pointer" }}
+              >
+                Sign-out
+              </span>
+            ) : (
+              <Link
+                to="/sign-in"
+                className={`nav-link ${
+                  darkMode ? "text-dark-primary" : "text-light-primary"
+                }`}
+              >
+                Sign-in
+              </Link>
+            )}
+
             <Nav.Link
               className={darkMode ? "text-dark-primary" : "text-light-primary"}
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <BiSun size="1.7rem" /> : <BiMoon size="1.7rem" />}
             </Nav.Link>
+
             <Link
               to="/cart"
               className={`${
@@ -67,8 +88,9 @@ function Header() {
               )}
               <span style={{ marginLeft: !isEmpty ? "-13px" : 0 }}>Cart</span>
             </Link>
+
             <Link
-              to="my-account"
+              to="/my-account"
               className={`nav-link ${
                 darkMode ? "text-dark-primary" : "text-light-primary"
               }`}

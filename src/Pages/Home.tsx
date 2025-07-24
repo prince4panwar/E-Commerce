@@ -4,6 +4,7 @@ import { useThemeHook } from "../GlobalComponents/ThemeProvider";
 import { BiSearch } from "react-icons/bi";
 import SearchFilter from "react-filter-search";
 import ProductCard from "../components/ProductCard";
+import type { Item } from "react-use-cart";
 
 function Home() {
   const [theme] = useThemeHook();
@@ -54,7 +55,7 @@ function Home() {
           data={productData}
           renderResults={(results) => (
             <Row className="justify-content-center">
-              {results.map((item: object, index: string) => (
+              {results.map((item: Item, index: string) => (
                 <ProductCard data={item} key={index} />
               ))}
             </Row>

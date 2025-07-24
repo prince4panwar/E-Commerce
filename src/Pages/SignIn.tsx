@@ -42,7 +42,6 @@ function SignIn() {
         .finally(() => {
           setLoading(false);
           navigate("/", { replace: true });
-          alert("Login sucessfully");
         });
     }
   };

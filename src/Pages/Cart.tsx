@@ -76,7 +76,7 @@ function Cart() {
                     <td>
                       <Button
                         onClick={() =>
-                          updateItemQuantity(item.id, item.quantity - 1)
+                          updateItemQuantity(item.id, item?.quantity - 1)
                         }
                         className="ms-2"
                       >
@@ -84,7 +84,7 @@ function Cart() {
                       </Button>
                       <Button
                         onClick={() =>
-                          updateItemQuantity(item.id, item.quantity + 1)
+                          updateItemQuantity(item.id, item?.quantity + 1)
                         }
                         className="ms-2"
                       >
@@ -108,7 +108,7 @@ function Cart() {
           <Row
             style={{ position: "fixed", bottom: 0 }}
             className={`${
-              theme ? "bg-light-black text-light" : "g-light text-black"
+              theme ? "bg-light-black text-light" : "bg-light text-black"
             } justify-content-center w-100`}
           >
             <Col className="py-2">

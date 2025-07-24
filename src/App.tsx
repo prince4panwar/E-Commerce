@@ -11,6 +11,7 @@ import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
 import { ToastContainer } from "react-toastify";
 import MyAccount from "./Pages/MyAccount";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [theme] = useThemeHook();
@@ -22,15 +23,40 @@ function App() {
     >
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/my-account" element={<MyAccount />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-account"
+          element={
+            <PrivateRoute>
+              <MyAccount />
+            </PrivateRoute>
+          }
+        />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/product-details/:productId"
-          element={<ProductDetails />}
+          element={
+            <PrivateRoute>
+              <ProductDetails />
+            </PrivateRoute>
+          }
         />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <ToastContainer />
     </main>

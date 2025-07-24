@@ -1,8 +1,23 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  type ReactElement,
+} from "react";
 
-const ThemeContext = createContext();
+interface ThemeContextType {
+  theme: boolean;
+  setThemeMode: (mode: string) => void;
+}
 
-function ThemeProvider({ children }) {
+interface ThemeProviderProps {
+  children: ReactElement;
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+function ThemeProvider({ children }: ThemeProviderProps) {
   const defaultTheme =
     JSON.parse(localStorage.getItem("theme") as string) || false;
 
@@ -22,8 +37,8 @@ function ThemeProvider({ children }) {
 }
 
 const useThemeHook = () => {
-  const { theme } = useContext(ThemeContext);
-  return [theme];
+  const { theme, setThemeMode } = useContext(ThemeContext) as ThemeContextType;
+  return [theme, setThemeMode];
 };
 
 export { ThemeProvider, ThemeContext, useThemeHook };

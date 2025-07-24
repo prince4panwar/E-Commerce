@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { useCart } from "react-use-cart";
+import { useCart, type Item } from "react-use-cart";
 import { BsCartPlus } from "react-icons/bs";
 
 function ProductDetails() {
   const { productId } = useParams();
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState<Item | null>(null);
   const [theme] = useThemeHook();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { addItem } = useCart();
