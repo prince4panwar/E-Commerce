@@ -1,10 +1,11 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useThemeHook } from "../GlobalComponents/ThemeProvider";
 import { useCart, type Item } from "react-use-cart";
 import { BsCartPlus } from "react-icons/bs";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import type { ReactElement } from "react";
+import { motion } from "motion/react";
 
 interface ProductCardProps {
   data: Item;
@@ -39,9 +40,9 @@ function ProductCard(props: ProductCardProps): ReactElement {
             marginBottom: "inherit",
           }}
         >
-          <div style={{ width: "9rem" }}>
-            <Card.Img variant="top" src={image} className="img-fluid" />
-          </div>
+          <motion.div whileHover={{ scale: 1.05 }} style={{ width: "12rem" }}>
+            <Card.Img variant="top" src={image} className="img-fluid p-2" />
+          </motion.div>
         </div>
       </Link>
       <Card.Body>
@@ -57,15 +58,18 @@ function ProductCard(props: ProductCardProps): ReactElement {
         <Card.Title>
           Rs. <span className="h3">{price}</span>
         </Card.Title>
-        <Button
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => addToCart()}
-          className={`${
-            theme ? "bg-dark-primary text-black" : "bg-light-primary"
-          } d-flex align-items-center m-auto border-0`}
+          className={`btn border-0 d-flex align-items-center m-auto ${
+            theme ? "bg-dark-primary text-black" : "bg-light-primary text-white"
+          }`}
         >
           <BsCartPlus />
           Add to cart
-        </Button>
+        </motion.button>
       </Card.Body>
     </Card>
   );

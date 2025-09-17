@@ -2,6 +2,7 @@ import { Button, Container, Col, Row, Table } from "react-bootstrap";
 import { useCart } from "react-use-cart";
 import { useThemeHook } from "../GlobalComponents/ThemeProvider";
 import { BsCartCheck, BsCartX } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 function Cart() {
   const [theme] = useThemeHook();
@@ -13,6 +14,11 @@ function Cart() {
     removeItem,
     emptyCart,
   } = useCart();
+
+  const removeFromCart = (item) => {
+    removeItem(item.id);
+    toast.success("Item is removed from cart", { autoClose: 2000 });
+  };
   return (
     <Container className="py-4 mt-5">
       <h1
@@ -92,7 +98,7 @@ function Cart() {
                       </Button>
                       <Button
                         variant="danger"
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeFromCart(item)}
                         className="ms-2"
                       >
                         Remove Item

@@ -29,7 +29,8 @@
 }
 
 .bg-light-2 {
-    background-color: #dadcde !important;
+    /* background-color: #dadcde !important; */
+    background-color: #d0dae5 !important;
 }
 
 .bg-light-primary {
